@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <!--<item>
+    <shape  android:shape="rectangle">
+      <gradient
+        android:startColor="@color/chindpostgreenlight"
+        android:endColor="@color/chindpostgreennormal"
+        android:angle="90"
+        android:type="radial"
+        android:gradientRadius="600" />
+      <padding
+        android:left="0px"
+        android:top="0px"
+        android:right="0px"
+        android:bottom="0px" />
+      <corners
+        android:radius="0px" />
+    </shape>
+  </item>-->
+  <item>
+    <bitmap
+      android:scaleType="fitEnd"
+      android:dither="true"
+      android:antialias="true"
+      android:tintMode="src_in"
+      android:gravity="fill"
+      android:autoMirrored="true"
+      android:src="@drawable/start"
+      android:tileMode="disabled" >
+
+      <layout_width>100</layout_width>
+      
+    </bitmap>
+  </item>
+</layer-list>

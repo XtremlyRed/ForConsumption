@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ForConsumption.Views.MyViews.ConsumptionModeView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    Title="{Binding Title}"
+    NavigationPage.HasBackButton="True"
+    Shell.ForegroundColor="Black"
+    Shell.NavBarHasShadow="False"  
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="False"
+    Shell.TitleColor="Black">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="添  加  "
+            Command="{Binding AddNewConsumptionModeCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+
+    <ContentPage.Content>
+        <Grid Margin="15,0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <CollectionView x:Name="InfoContainer" ItemsSource="{Binding ConsumptionModes}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <material:MaterialCard
+                            Padding="00"
+                            BackgroundColor="#60d9d9f3"
+                            BorderColor="Transparent"
+                            ClickCommand="{Binding BindingContext.UpdateConsumptionModeCommand, Source={x:Reference InfoContainer}}"
+                            ClickCommandParameter="{Binding}"
+                            CornerRadius="3"
+                            HeightRequest="60"
+                            HorizontalOptions="Fill"
+                            IsClickable="True">
+                            <Grid
+                                Margin="20,0"
+                                ColumnDefinitions="*,*,1*">
+                                <Label
+                                    FontSize="Body"
+                                    Grid.Column="0"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="{Binding Mode}"
+                                    VerticalOptions="CenterAndExpand" />
+                                <Label
+                                    FontSize="Body"
+                                    Grid.Column="1"
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="{Binding Counter,StringFormat='{}使用 {0} 次'}"
+                                    VerticalOptions="CenterAndExpand" />
+                                <Label
+                                    FontSize="Body"
+                                    Grid.Column="2"
+                                    HorizontalOptions="EndAndExpand"
+                                    Text="{Binding CreateTime, StringFormat='{}{0:yyyy-MM-dd}'}"
+                                    VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                            <!--<StackLayout Margin="20,0" Orientation="Horizontal">
+                                <Label
+                                    FontSize="Body"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="{Binding Mode}"
+                                    VerticalOptions="CenterAndExpand" />
+
+
+                                <Label
+                                    FontSize="Body"
+                                    HorizontalOptions="EndAndExpand"
+                                    Text="{Binding CreateTime, StringFormat='{}{0:yyyy-MM-dd  HH:mm}'}"
+                                    VerticalOptions="CenterAndExpand" />
+                            </StackLayout>-->
+
+                        </material:MaterialCard>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+
+            </CollectionView>
+
+
+            <!--<Button
+                Grid.Row="1" Margin="0,0,0,10"
+                BackgroundColor="#60d9d9f3"
+                Command="{Binding AddNewConsumptionModeCommand}"
+                HeightRequest="60"
+                Text="添  加" FontSize="20"
+                TextColor="Black" />-->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

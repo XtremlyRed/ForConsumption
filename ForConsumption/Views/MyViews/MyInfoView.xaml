@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ForConsumption.Views.MyInfoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    Title="{Binding Title}"
+    Shell.NavBarHasShadow="False">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <StackLayout
+                Grid.Row="0"
+                Padding="0"
+                VerticalOptions="Start">
+                <Grid>
+                    <ui:MaterialCard
+                        Padding="00"
+                        BackgroundColor="#d9d9f3"
+                        ClickCommand="{Binding AddConsumptionCommand}"
+                        CornerRadius="60"
+                        HeightRequest="120"
+                        HorizontalOptions="CenterAndExpand"
+                        IsClickable="True"
+                        VerticalOptions="EndAndExpand"
+                        WidthRequest="120" />
+
+                    <Image
+                        HeightRequest="100"
+                        HorizontalOptions="Center"
+                        Source="write"
+                        VerticalOptions="Center"
+                        WidthRequest="100" />
+                </Grid>
+
+                <Label
+                    Margin="0,02,0,50"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="{Binding MyName}" />
+
+
+
+                <ui:MaterialCard
+                    BackgroundColor="#00FFFFFF"
+                    ClickCommand="{Binding OpenConsumptionModeCommand}"
+                    HeightRequest="40"  Padding="20,0"
+                    IsClickable="True">
+                    <StackLayout Margin="10,0" HorizontalOptions="Fill" Orientation="Horizontal">
+                        <Label
+                            FontSize="Body"
+                            HorizontalOptions="Start"
+                            Text="消费类型"
+                            VerticalOptions="Center" />
+
+                        <Label
+                            FontSize="Body"
+                            HorizontalOptions="EndAndExpand"
+                            Text="&gt;"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </ui:MaterialCard>
+                <BoxView
+                    Margin="30,0" HeightRequest="0.5"
+                    BackgroundColor="#48d9d9f3"></BoxView>
+
+                <ui:MaterialCard
+                    BackgroundColor="#00d9d9f3"
+                    ClickCommand="{Binding OpenPaymentModeCommand}"
+              
+                    HeightRequest="40"
+                    Padding="20,0"
+                    IsClickable="True">
+                    <StackLayout
+                        Margin="10,0"
+                        HorizontalOptions="Fill" Orientation="Horizontal">
+                        <Label
+                            FontSize="Body"
+                            HorizontalOptions="Start"
+                            Text="支付类型"
+                            VerticalOptions="Center" />
+
+                        <Label
+                            FontSize="Body"
+                            HorizontalOptions="EndAndExpand"
+                            Text="&gt;"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </ui:MaterialCard>
+                <BoxView
+                    Margin="30,0"
+                    HeightRequest="0.5"
+                    BackgroundColor="#48d9d9f3"></BoxView>
+                <ui:MaterialCard
+                    BackgroundColor="#00d9d9f3"
+                    ClickCommand="{Binding OpenSystemConfigCommand}"
+                    HeightRequest="40"
+                    Padding="20,0"
+                    IsClickable="True">
+                    <StackLayout
+                        Margin="10,0"
+                        HorizontalOptions="Fill" Orientation="Horizontal">
+                        <Label
+                            FontSize="Body"
+                            HorizontalOptions="Start"
+                            Text="系统设置"
+                            VerticalOptions="Center" />
+
+                        <Label
+                            FontSize="Body"
+                            HorizontalOptions="EndAndExpand"
+                            Text="&gt;"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </ui:MaterialCard>
+                <BoxView
+                    Margin="30,0"
+                    HeightRequest="0.5"
+                    BackgroundColor="#48d9d9f3"></BoxView>
+            </StackLayout>
+
+
+
+            <!--<Label
+                Grid.Row="1"
+                Margin="0,0,0,50"
+                HorizontalOptions="CenterAndExpand"
+                Text="Powered by HuYong"
+                VerticalOptions="EndAndExpand" />-->
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

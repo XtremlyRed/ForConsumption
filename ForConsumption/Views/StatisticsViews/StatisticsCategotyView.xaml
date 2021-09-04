@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    Title="{Binding Title}"
+    NavigationPage.HasBackButton="True"
+    Shell.ForegroundColor="Black"
+    Shell.NavBarHasShadow="False"
+    Shell.NavBarIsVisible="True"
+    x:Name="InfoContainer"
+    Shell.TabBarIsVisible="False"
+    Shell.TitleColor="Black"
+    x:Class="ForConsumption.Views.StatisticsViews.StatisticsCategotyView">
+    <ContentPage.Content>
+        <CollectionView Margin="15,0"
+            ItemsSource="{Binding ItemsDisplayList}"
+            IsGrouped="True"
+            RemainingItemsThreshold="1">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Grid
+                        HeightRequest="60">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="1.5*" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.ColumnSpan="2"
+                            Grid.Column="2"
+                            Margin="0,0,18,0"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            HorizontalOptions="End"
+                            TextColor="Red"
+                            VerticalOptions="Center"
+                            Text="{Binding TotalMoney,StringFormat='{}{0:F2}'}" />
+                        <BoxView
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0,15,10,0"
+                            BackgroundColor="#d9d9f3"
+                            CornerRadius="3"
+                            HeightRequest="7"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            WidthRequest="120" />
+                        <Label
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0,00,10,0"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            FontSize="20"
+                            TextColor="ForestGreen"
+                            FontAttributes="Bold"
+                            Text="{Binding Header}"></Label>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <ui:MaterialCard
+                        Padding="0,00"
+                        BackgroundColor="#60d9d9f3"
+                        BorderColor="Transparent"
+                        ClickCommand="{Binding BindingContext.OpenDetailsCommand, Source={x:Reference InfoContainer}}"
+                        ClickCommandParameter="{Binding}"
+                        CornerRadius="3"
+                        HeightRequest="65"
+                        HorizontalOptions="Fill"
+                        IsClickable="True"
+                        VerticalOptions="EndAndExpand">
+                        <Grid
+                            Margin="10,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition
+                                    Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout
+                                Orientation="Horizontal">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    VerticalOptions="Center"
+                                    Text="{Binding Category}" />
+                                <Label
+                                    VerticalOptions="Center"
+                                    FontSize="13"
+                                    Text="{Binding Description}" />
+                            </StackLayout>
+                            <StackLayout
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                VerticalOptions="Center"
+                                Orientation="Horizontal">
+                                <Label
+                                    FontSize="13"
+                                    Text="{Binding CreateTime, StringFormat='{}{0:HH:mm}'}" />
+                                <Label
+                                    Margin="5,00,5,0"
+                                    FontAttributes="Bold"
+                                    Text="·" />
+                                <Label
+                                    FontSize="13"
+                                    Text="{Binding Payment}" />
+                                <Label
+                                    Margin="5,00,5,0"
+                                    FontAttributes="Bold"
+                                    Text="·" />
+                                <Label
+                                    FontSize="13"
+                                    Text="{Binding Owner}" />
+                            </StackLayout>
+                            <Label
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Margin="0,0,10,0"
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                Text="{Binding Money, StringFormat='{}{0:F2}'}"
+                                TextColor="DeepSkyBlue"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </ui:MaterialCard>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <ContentView>
+                    <StackLayout
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand">
+                        <Label
+                            Text="未添加消费记录"
+                            Margin="10,25,10,10"
+                            FontAttributes="Italic"
+                            FontSize="Body"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </ContentView>
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </ContentPage.Content>
+</ContentPage>

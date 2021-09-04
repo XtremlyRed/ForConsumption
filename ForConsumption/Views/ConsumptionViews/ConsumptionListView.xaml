@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ForConsumption.Views.ConsumptionListView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:system="clr-namespace:System;assembly=netstandard"
+    Title="{Binding Title}"
+    Shell.NavBarHasShadow="False">
+    <ContentPage.Resources></ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout
+            Margin="15,0">
+            <Grid
+                BackgroundColor="Transparent"
+                HeightRequest="200"
+                MinimumHeightRequest="200">
+                <BoxView
+                    BackgroundColor="#CEEFE4"
+                    CornerRadius="3"
+                    HeightRequest="160"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="StartAndExpand" />
+                <StackLayout
+                    Margin="20,-25,20,0"
+                    HorizontalOptions="StartAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="Center">
+                    <Label
+                        Text="今日支出" />
+                    <StackLayout
+                        Orientation="Horizontal">
+                        <Label
+                            FontSize="25"
+                            Text="{Binding TodayMoney, StringFormat='{}{0:F2}'}" />
+                        <Label
+                            FontSize="15" Margin="0,0,0,3"
+                            VerticalOptions="End"
+                            Text="元" />
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout
+                    Margin="20,-25,20,0"
+                    HorizontalOptions="EndAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="Center">
+                    <Label
+                        Text="消费数量" />
+                    <StackLayout
+                        HorizontalOptions="End"
+                        Orientation="Horizontal">
+                        <Label
+                            FontSize="25"
+                            Text="{Binding ItemsSource.Count}" />
+                        <Label
+                            FontSize="15"
+                            Margin="0,0,0,3"
+                            VerticalOptions="End"
+                            Text="次" />
+                    </StackLayout>
+                </StackLayout>
+                <material:MaterialCard
+                    Padding="00"
+                    BackgroundColor="#d9d9f3"
+                    ClickCommand="{Binding AddConsumptionCommand}"
+                    CornerRadius="40"
+                    HeightRequest="80"
+                    HorizontalOptions="CenterAndExpand"
+                    IsClickable="True"
+                    VerticalOptions="EndAndExpand"
+                    WidthRequest="80">
+                    <material:MaterialIcon
+                        Margin="10"
+                        Aspect="AspectFill"
+                        Source="write" />
+                </material:MaterialCard>
+                <Label
+                    FontSize="16"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    Margin="0,30,0,0"
+                    Text="{Binding Today,StringFormat='{}{0:yyyy-MM-dd}'}"></Label>
+            </Grid>
+            <Grid
+                Margin="0,-20,0,0"
+                BackgroundColor="Transparent"
+                HeightRequest="32"
+                MinimumHeightRequest="32">
+                <BoxView
+                    Margin="1"
+                    BackgroundColor="#CEEFE4"
+                    CornerRadius="3"
+                    HeightRequest="8"
+                    HorizontalOptions="StartAndExpand"
+                    VerticalOptions="End"
+                    WidthRequest="100" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="今日消费"
+                    VerticalOptions="Center" />
+            </Grid>
+            <RefreshView
+                IsRefreshing="{Binding IsRefreshing,Mode=OneWay}"
+                Command="{Binding RefreshCommand}">
+                <CollectionView
+                    x:Name="InfoContainer"
+                    ItemSizingStrategy="MeasureAllItems"
+                    ItemsSource="{Binding ItemsSource}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <material:MaterialCard
+                                Padding="00"
+                                BackgroundColor="#60d9d9f3"
+                                BorderColor="Transparent"
+                                ClickCommand="{Binding BindingContext.OpenDetailsCommand, Source={x:Reference InfoContainer}}"
+                                ClickCommandParameter="{Binding}"
+                                CornerRadius="3"
+                                HeightRequest="65"
+                                HorizontalOptions="Fill"
+                                IsClickable="True"
+                                VerticalOptions="EndAndExpand">
+                                <Grid
+                                    Margin="10,5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition
+                                            Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                        Orientation="Horizontal">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="16"
+                                            VerticalOptions="Center"
+                                            Text="{Binding Category}" />
+                                        <Label
+                                            VerticalOptions="Center"
+                                            FontSize="13"
+                                            Text="{Binding Description}" />
+                                    </StackLayout>
+                                    <StackLayout
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        VerticalOptions="Center"
+                                        Orientation="Horizontal">
+                                        <Label
+                                            FontSize="13"
+                                            Text="{Binding CreateTime, StringFormat='{}{0:HH:mm}'}" />
+                                        <Label
+                                            Margin="5,00,5,0"
+                                            FontAttributes="Bold"
+                                            Text="·" />
+                                        <Label
+                                            FontSize="13"
+                                            Text="{Binding Payment}" />
+                                        <Label
+                                            Margin="5,00,5,0"
+                                            FontAttributes="Bold"
+                                            Text="·" />
+                                        <Label
+                                            FontSize="13"
+                                            Text="{Binding Owner}" />
+                                    </StackLayout>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        Margin="0,0,10,0"
+                                        FontAttributes="Bold"
+                                        FontSize="20"
+                                        Text="{Binding Money, StringFormat='{}{0:F2}'}"
+                                        TextColor="DeepSkyBlue"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </material:MaterialCard>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

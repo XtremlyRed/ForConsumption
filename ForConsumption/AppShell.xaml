@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ForConsumption.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ForConsumption.Views"
+    xmlns:local2="clr-namespace:ForConsumption.Views.DetailsViews"
+    xmlns:local3="clr-namespace:ForConsumption.Views.StatisticsViews"
+    Title="ForConsumption">
+    <!--
+        The overall app visual hierarchy is defined here, along with navigation.
+        
+        https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
+    -->
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="black" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="black" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#FF000000" />
+                <Setter Property="Shell.TabBarTitleColor" Value="green" />
+            </Style>
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="FlyoutItem" />
+        </ResourceDictionary>
+    </Shell.Resources>
+    <TabBar x:Name="MainView" IsVisible="False">
+        <ShellContent
+            Title="记账"
+            ContentTemplate="{DataTemplate local:ConsumptionListView}"
+            Icon="icon_about.png"
+            Route="ConsumptionListView" />
+        <ShellContent
+            Title="明细"
+            ContentTemplate="{DataTemplate local2:ListDetailsView}"
+            Icon="icon_feed.png" />
+        <ShellContent
+            Title="统计"
+            ContentTemplate="{DataTemplate local3:StatisticsMainView}"
+            Icon="icon_about.png" />
+        <ShellContent
+            Title="我的"
+            ContentTemplate="{DataTemplate local:MyInfoView}"
+            Icon="icon_feed.png" />
+    </TabBar>
+
+    <TabBar x:Name="LoginView" IsVisible="True">
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" />
+    </TabBar>
+</Shell>

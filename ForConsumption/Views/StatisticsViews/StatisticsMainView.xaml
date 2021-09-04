@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    Title="{Binding Title}"
+    x:Name="MainView1"
+    xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+    Shell.NavBarHasShadow="False"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:microcharts1="clr-namespace:Microcharts;assembly=Microcharts"
+    x:Class="ForConsumption.Views.StatisticsViews.StatisticsMainView">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="28" />
+                <RowDefinition
+                    Height="auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid
+                BackgroundColor="Transparent">
+                <StackLayout Margin="0,-10,0,0"
+                    VerticalOptions="Start"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal">
+                    <ui:MaterialCard
+                        WidthRequest="80"
+                        HeightRequest="40"
+                        ClickCommand="{Binding LastMonthCommand}"
+                        VerticalOptions="Center"
+                        Scale="0.7"
+                        IsClickable="True"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        Padding="0">
+                        <Grid BackgroundColor="Transparent"
+                            WidthRequest="40"
+                            Scale=".6" HorizontalOptions="End"
+                            HeightRequest="40">
+                            <Path
+                                Margin="10,0,00,0"
+                                Aspect="UniformToFill"
+                                Fill="gray"
+                                Data="M10,0 10,10 0,5z"></Path>
+                        </Grid>
+                    </ui:MaterialCard>
+                    <Label
+                        TextColor="Green"
+                        Text="{Binding CurrentMouth,StringFormat='{}{0:yyyy年MM月}'}"
+                        Margin="25,0,25,04"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"
+                        FontSize="Body"></Label>
+                    <ui:MaterialCard
+                        WidthRequest="80"
+                        HeightRequest="40"
+                        VerticalOptions="Center"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        Scale="0.7"
+                        ClickCommand="{Binding NextMonthCommand}"
+                        IsClickable="True"
+                        Rotation="180"
+                        Padding="0">
+                        <Grid HorizontalOptions="End"
+                            BackgroundColor="Transparent"
+                            WidthRequest="40" Scale=".6"
+                            HeightRequest="40">
+                            <Path
+                                Margin="0,2,00,0"
+                                Aspect="UniformToFill"
+                                Fill="gray"
+                                Data="M10,0 10,10 0,5z"></Path>
+                        </Grid>
+                    </ui:MaterialCard>
+                </StackLayout>
+            </Grid>
+            <ScrollView Margin="0,-10,0,0"
+                Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="auto" />
+                        <RowDefinition
+                            Height="auto" />
+                        <RowDefinition
+                            Height="auto" />
+                        <RowDefinition
+                            Height="auto" />
+                        <RowDefinition
+                            Height="auto" />
+                        <RowDefinition
+                            Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid
+                        Grid.Row="0"
+                        Margin="20,0,0,0"
+                        BackgroundColor="Transparent"
+                        HeightRequest="32">
+                        <BoxView
+                            Margin="1"
+                            BackgroundColor="#CEEFE4"
+                            CornerRadius="3"
+                            HeightRequest="8"
+                            HorizontalOptions="StartAndExpand"
+                            VerticalOptions="End"
+                            WidthRequest="100" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="本月总消费"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <Grid BackgroundColor="Transparent"
+                        HeightRequest="50"
+                        Grid.Row="1">
+                        <StackLayout VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                VerticalOptions="End"
+                                FontSize="Body"
+                                HorizontalOptions="Center"
+                                Text="共"></Label>
+                            <Label
+                                VerticalOptions="End"
+                                TextColor="Red"
+                                FontAttributes="Bold"
+                                FontSize="Large"
+                                Margin="0,0,0,-2"
+                                HorizontalOptions="Center"
+                                Text="{Binding TotalMoney,StringFormat='{}{0:F2}'}"></Label>
+                            <Label
+                                VerticalOptions="End"
+                                FontSize="Body"
+                                HorizontalOptions="Center"
+                                Text="元"></Label>
+                            <Label
+                                VerticalOptions="End"
+                                FontSize="Body"
+                                HorizontalOptions="Center"
+                                Text="共"></Label>
+                            <Label
+                                VerticalOptions="End"
+                                TextColor="Green"
+                                FontAttributes="Bold"
+                                FontSize="Large"
+                                Margin="0,0,0,-2"
+                                HorizontalOptions="Center"
+                                Text="{Binding TotalCount}"></Label>
+                            <Label
+                                VerticalOptions="End"
+                                FontSize="Body"
+                                HorizontalOptions="Center"
+                                Text="次"></Label>
+                        </StackLayout>
+                    </Grid>
+                    <Grid
+                        Grid.Row="2"
+                        Margin="20,0,0,0"
+                        BackgroundColor="Transparent"
+                        HeightRequest="32">
+                        <BoxView
+                            Margin="1"
+                            BackgroundColor="#CEEFE4"
+                            CornerRadius="3"
+                            HeightRequest="8"
+                            HorizontalOptions="StartAndExpand"
+                            VerticalOptions="End"
+                            WidthRequest="100" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="消费分类"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <Grid
+                        BackgroundColor="Transparent"
+                        Grid.Row="3">
+                        <microcharts:ChartView
+                            VerticalOptions="FillAndExpand"
+                            Margin="20,20,20,20"
+                            HeightRequest="220"
+                            Chart="{Binding ItemsDisplayList,ConverterParameter=1,Converter={StaticResource StatisticsItemConverter}}"></microcharts:ChartView>
+                    </Grid>
+                    <Grid
+                        Grid.Row="4"
+                        Margin="20,0,0,0"
+                        BackgroundColor="Transparent"
+                        HeightRequest="32">
+                        <BoxView
+                            Margin="1"
+                            BackgroundColor="#CEEFE4"
+                            CornerRadius="3"
+                            HeightRequest="8"
+                            HorizontalOptions="StartAndExpand"
+                            VerticalOptions="End"
+                            WidthRequest="100" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="消费记录"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <CollectionView
+                        Margin="20,0"
+                        Grid.Row="5"
+                        ItemsSource="{Binding ItemsDisplayList}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <ui:MaterialCard
+                                    IsClickable="True"
+                                    CornerRadius="3"
+                                    HeightRequest="60"
+                                    Margin="0,2"
+                                    ClickCommandParameter="{Binding}"
+                                    ClickCommand="{Binding BindingContext.StatisticsCategotyCommand,Source={x:Reference MainView1}}"
+                                    BackgroundColor="#00d9d9f3"
+                                    BorderColor="Transparent"
+                                    Padding="05,0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1.2*"/>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="2*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                             
+                                            VerticalOptions="Center"
+                                            Text="{Binding Header}"
+                                            FontSize="18"
+                                            FontAttributes="Bold"
+                                            Grid.Column="0"></Label>
+                                        <Label
+                                            Grid.Column="1"
+                                            Margin="0,0,0,0"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            Text="{Binding Percent,StringFormat='{}{0:F2}%'}"
+                                            FontSize="15"></Label>
+                                        <StackLayout
+                                            Grid.Column="2"
+                                            HorizontalOptions="End"
+                                            Orientation="Horizontal">
+                                            <Label
+                                                VerticalOptions="Center"
+                                                Text="{Binding TotalMoney,StringFormat='{}{0:F2}'}"
+                                                FontSize="20"
+                                                FontAttributes="Bold"
+                                                TextColor="DeepSkyBlue"
+                                                Grid.Column="0"></Label>
+                                            <Label
+                                                Margin="5,0,0,0"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Center"
+                                                Text="{Binding TotalCount,StringFormat='{}{0}笔'}"
+                                                FontSize="14"></Label>
+                                            <Path
+                                                VerticalOptions="Center"
+                                                Margin="10,0,0,0"
+                                                WidthRequest="13"
+                                                HeightRequest="30"
+                                                HorizontalOptions="End"
+                                                Aspect="Fill"
+                                                Scale="0.5"
+                                                Data="M0,0 2,5 0,10"
+                                                StrokeThickness="3"
+                                                Stroke="Gray"></Path>
+                                        </StackLayout>
+                                    </Grid>
+                                </ui:MaterialCard>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

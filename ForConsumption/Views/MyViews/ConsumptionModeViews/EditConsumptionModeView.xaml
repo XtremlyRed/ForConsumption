@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ForConsumption.Views.MyViews.ConsumptionModeViews.EditConsumptionModeView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding Title}"
+    NavigationPage.HasBackButton="True"
+    Shell.ForegroundColor="Black"
+    Shell.NavBarHasShadow="False"
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="False"
+    Shell.TitleColor="Black">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="完  成  "
+            Command="{Binding CompleteCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Margin="15,0">
+
+
+            <Grid HeightRequest="60">
+                <BoxView
+                    BackgroundColor="#60d9d9f3" CornerRadius="3" />
+                <Entry
+                    Margin="0,-25,0,-25"
+                    AutomationId="1"
+                    BackgroundColor="Transparent"
+                    CharacterSpacing="2"
+                    ClearButtonVisibility="WhileEditing"
+                    FontSize="Body"
+                    HeightRequest="60"
+                    IsTextPredictionEnabled="False"
+                    Keyboard="Text"
+                    Placeholder="请输入消费类型"
+                    Text="{Binding Current.Mode}" />
+
+
+            </Grid>
+            <BoxView
+                Margin="0,5,0,0"
+                BackgroundColor="White"
+                CornerRadius="3"
+                HeightRequest="10" />
+
+
+            <!--<Button
+                Grid.Row="1" Margin="0,0,0,10"
+                BackgroundColor="#60d9d9f3"
+                Command="{Binding CompleteCommand}"
+                FontSize="Body"
+                HeightRequest="60"
+                Text="完  成"
+                TextColor="Black"
+                VerticalOptions="EndAndExpand" />-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
