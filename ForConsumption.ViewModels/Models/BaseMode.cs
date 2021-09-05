@@ -19,7 +19,7 @@ namespace ForConsumption.ViewModels.Models
 
 
             IRestRequest? request = client.Create()
-                .AddHeader("Authorization", $"Bearer {TokenParameter.CurrentToken}")
+                .AddHeader("Authorization", $"Bearer {PostContext.CurrentToken}")
                 .UseDate(DateTime.Now)
                 .UseMethod(Method.POST)
                 .AddParameter(context);

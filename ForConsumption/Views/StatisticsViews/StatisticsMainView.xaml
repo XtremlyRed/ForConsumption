@@ -1,98 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
+    x:Class="ForConsumption.Views.StatisticsViews.StatisticsMainView"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-    Title="{Binding Title}"
-    x:Name="MainView1"
-    xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-    Shell.NavBarHasShadow="False"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
     xmlns:microcharts1="clr-namespace:Microcharts;assembly=Microcharts"
-    x:Class="ForConsumption.Views.StatisticsViews.StatisticsMainView">
+    xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    x:Name="MainView1"
+    Title="{Binding Title}"
+    Shell.NavBarHasShadow="False">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition
-                    Height="28" />
-                <RowDefinition
-                    Height="auto" />
+                <RowDefinition Height="28" />
+                <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid
-                BackgroundColor="Transparent">
-                <StackLayout Margin="0,-10,0,0"
-                    VerticalOptions="Start"
+            <Grid BackgroundColor="Transparent">
+                <StackLayout
+                    Margin="0,-10,0,0"
                     BackgroundColor="Transparent"
                     HorizontalOptions="Center"
-                    Orientation="Horizontal">
+                    Orientation="Horizontal"
+                    VerticalOptions="Start">
                     <ui:MaterialCard
-                        WidthRequest="80"
-                        HeightRequest="40"
-                        ClickCommand="{Binding LastMonthCommand}"
-                        VerticalOptions="Center"
-                        Scale="0.7"
-                        IsClickable="True"
+                        Padding="0"
                         BackgroundColor="Transparent"
                         BorderColor="Transparent"
-                        Padding="0">
-                        <Grid BackgroundColor="Transparent"
-                            WidthRequest="40"
-                            Scale=".6" HorizontalOptions="End"
-                            HeightRequest="40">
+                        ClickCommand="{Binding LastMonthCommand}"
+                        HeightRequest="40"
+                        IsClickable="True"
+                        Scale="0.7"
+                        VerticalOptions="Center"
+                        WidthRequest="80">
+                        <Grid
+                            BackgroundColor="Transparent"
+                            HeightRequest="40"
+                            HorizontalOptions="End"
+                            Scale=".6"
+                            WidthRequest="40">
                             <Path
                                 Margin="10,0,00,0"
                                 Aspect="UniformToFill"
-                                Fill="gray"
-                                Data="M10,0 10,10 0,5z"></Path>
+                                Data="M10,0 10,10 0,5z"
+                                Fill="gray" />
                         </Grid>
                     </ui:MaterialCard>
                     <Label
-                        TextColor="Green"
-                        Text="{Binding CurrentMouth,StringFormat='{}{0:yyyy年MM月}'}"
                         Margin="25,0,25,04"
-                        VerticalOptions="Center"
                         FontAttributes="Bold"
-                        FontSize="Body"></Label>
+                        FontSize="Body"
+                        Text="{Binding CurrentMouth, StringFormat='{}{0:yyyy年MM月}'}"
+                        TextColor="Green"
+                        VerticalOptions="Center" />
                     <ui:MaterialCard
-                        WidthRequest="80"
-                        HeightRequest="40"
-                        VerticalOptions="Center"
+                        Padding="0"
                         BackgroundColor="Transparent"
                         BorderColor="Transparent"
-                        Scale="0.7"
                         ClickCommand="{Binding NextMonthCommand}"
+                        HeightRequest="40"
                         IsClickable="True"
                         Rotation="180"
-                        Padding="0">
-                        <Grid HorizontalOptions="End"
+                        Scale="0.6"
+                        VerticalOptions="Center"
+                        WidthRequest="80">
+                        <Grid
                             BackgroundColor="Transparent"
-                            WidthRequest="40" Scale=".6"
-                            HeightRequest="40">
+                            HeightRequest="40"
+                            HorizontalOptions="End"
+                            Scale=".6"
+                            WidthRequest="40">
                             <Path
                                 Margin="0,2,00,0"
                                 Aspect="UniformToFill"
-                                Fill="gray"
-                                Data="M10,0 10,10 0,5z"></Path>
+                                Data="M10,0 10,10 0,5z"
+                                Fill="gray" />
                         </Grid>
                     </ui:MaterialCard>
                 </StackLayout>
             </Grid>
-            <ScrollView Margin="0,-10,0,0"
-                Grid.Row="1">
+            <ScrollView Grid.Row="1" Margin="0,-10,0,0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition
-                            Height="auto" />
-                        <RowDefinition
-                            Height="auto" />
-                        <RowDefinition
-                            Height="auto" />
-                        <RowDefinition
-                            Height="auto" />
-                        <RowDefinition
-                            Height="auto" />
-                        <RowDefinition
-                            Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <Grid
                         Grid.Row="0"
@@ -113,48 +108,50 @@
                             Text="本月总消费"
                             VerticalOptions="Center" />
                     </Grid>
-                    <Grid BackgroundColor="Transparent"
-                        HeightRequest="50"
-                        Grid.Row="1">
-                        <StackLayout VerticalOptions="Center"
+                    <Grid
+                        Grid.Row="1"
+                        BackgroundColor="Transparent"
+                        HeightRequest="50">
+                        <StackLayout
                             HorizontalOptions="Center"
-                            Orientation="Horizontal">
+                            Orientation="Horizontal"
+                            VerticalOptions="Center">
                             <Label
-                                VerticalOptions="End"
                                 FontSize="Body"
                                 HorizontalOptions="Center"
-                                Text="共"></Label>
+                                Text="共"
+                                VerticalOptions="End" />
                             <Label
-                                VerticalOptions="End"
+                                Margin="0,0,0,-2"
+                                FontAttributes="Bold"
+                                FontSize="Large"
+                                HorizontalOptions="Center"
+                                Text="{Binding TotalMoney, StringFormat='{}{0:F2}'}"
                                 TextColor="Red"
+                                VerticalOptions="End" />
+                            <Label
+                                FontSize="Body"
+                                HorizontalOptions="Center"
+                                Text="元"
+                                VerticalOptions="End" />
+                            <Label
+                                FontSize="Body"
+                                HorizontalOptions="Center"
+                                Text="共"
+                                VerticalOptions="End" />
+                            <Label
+                                Margin="0,0,0,-2"
                                 FontAttributes="Bold"
                                 FontSize="Large"
-                                Margin="0,0,0,-2"
                                 HorizontalOptions="Center"
-                                Text="{Binding TotalMoney,StringFormat='{}{0:F2}'}"></Label>
-                            <Label
-                                VerticalOptions="End"
-                                FontSize="Body"
-                                HorizontalOptions="Center"
-                                Text="元"></Label>
-                            <Label
-                                VerticalOptions="End"
-                                FontSize="Body"
-                                HorizontalOptions="Center"
-                                Text="共"></Label>
-                            <Label
-                                VerticalOptions="End"
+                                Text="{Binding TotalCount}"
                                 TextColor="Green"
-                                FontAttributes="Bold"
-                                FontSize="Large"
-                                Margin="0,0,0,-2"
-                                HorizontalOptions="Center"
-                                Text="{Binding TotalCount}"></Label>
+                                VerticalOptions="End" />
                             <Label
-                                VerticalOptions="End"
                                 FontSize="Body"
                                 HorizontalOptions="Center"
-                                Text="次"></Label>
+                                Text="次"
+                                VerticalOptions="End" />
                         </StackLayout>
                     </Grid>
                     <Grid
@@ -176,14 +173,12 @@
                             Text="消费分类"
                             VerticalOptions="Center" />
                     </Grid>
-                    <Grid
-                        BackgroundColor="Transparent"
-                        Grid.Row="3">
+                    <Grid Grid.Row="3" BackgroundColor="Transparent">
                         <microcharts:ChartView
-                            VerticalOptions="FillAndExpand"
                             Margin="20,20,20,20"
+                            Chart="{Binding ItemsDisplayList, ConverterParameter=1, Converter={StaticResource StatisticsItemConverter}}"
                             HeightRequest="220"
-                            Chart="{Binding ItemsDisplayList,ConverterParameter=1,Converter={StaticResource StatisticsItemConverter}}"></microcharts:ChartView>
+                            VerticalOptions="FillAndExpand" />
                     </Grid>
                     <Grid
                         Grid.Row="4"
@@ -205,69 +200,68 @@
                             VerticalOptions="Center" />
                     </Grid>
                     <CollectionView
-                        Margin="20,0"
                         Grid.Row="5"
+                        Margin="20,0"
                         ItemsSource="{Binding ItemsDisplayList}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <ui:MaterialCard
-                                    IsClickable="True"
-                                    CornerRadius="3"
-                                    HeightRequest="60"
                                     Margin="0,2"
-                                    ClickCommandParameter="{Binding}"
-                                    ClickCommand="{Binding BindingContext.StatisticsCategotyCommand,Source={x:Reference MainView1}}"
+                                    Padding="05,0"
                                     BackgroundColor="#00d9d9f3"
                                     BorderColor="Transparent"
-                                    Padding="05,0">
+                                    ClickCommand="{Binding BindingContext.StatisticsCategotyCommand, Source={x:Reference MainView1}}"
+                                    ClickCommandParameter="{Binding}"
+                                    CornerRadius="3"
+                                    HeightRequest="60"
+                                    IsClickable="True">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1.2*"/>
+                                            <ColumnDefinition Width="1.2*" />
                                             <ColumnDefinition />
-                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="2*" />
                                         </Grid.ColumnDefinitions>
                                         <Label
-                                             
-                                            VerticalOptions="Center"
-                                            Text="{Binding Header}"
-                                            FontSize="18"
+                                            Grid.Column="0"
                                             FontAttributes="Bold"
-                                            Grid.Column="0"></Label>
+                                            FontSize="18"
+                                            Text="{Binding Header}"
+                                            VerticalOptions="Center" />
                                         <Label
                                             Grid.Column="1"
                                             Margin="0,0,0,0"
+                                            FontSize="15"
                                             HorizontalOptions="Start"
-                                            VerticalOptions="Center"
-                                            Text="{Binding Percent,StringFormat='{}{0:F2}%'}"
-                                            FontSize="15"></Label>
+                                            Text="{Binding Percent, StringFormat='{}{0:F2}%'}"
+                                            VerticalOptions="Center" />
                                         <StackLayout
                                             Grid.Column="2"
                                             HorizontalOptions="End"
                                             Orientation="Horizontal">
                                             <Label
-                                                VerticalOptions="Center"
-                                                Text="{Binding TotalMoney,StringFormat='{}{0:F2}'}"
-                                                FontSize="20"
+                                                Grid.Column="0"
                                                 FontAttributes="Bold"
+                                                FontSize="20"
+                                                Text="{Binding TotalMoney, StringFormat='{}{0:F2}'}"
                                                 TextColor="DeepSkyBlue"
-                                                Grid.Column="0"></Label>
+                                                VerticalOptions="Center" />
                                             <Label
                                                 Margin="5,0,0,0"
+                                                FontSize="14"
                                                 HorizontalOptions="Start"
-                                                VerticalOptions="Center"
-                                                Text="{Binding TotalCount,StringFormat='{}{0}笔'}"
-                                                FontSize="14"></Label>
+                                                Text="{Binding TotalCount, StringFormat='{}{0}笔'}"
+                                                VerticalOptions="Center" />
                                             <Path
-                                                VerticalOptions="Center"
                                                 Margin="10,0,0,0"
-                                                WidthRequest="13"
+                                                Aspect="Fill"
+                                                Data="M0,0 2,5 0,10"
                                                 HeightRequest="30"
                                                 HorizontalOptions="End"
-                                                Aspect="Fill"
                                                 Scale="0.5"
-                                                Data="M0,0 2,5 0,10"
+                                                Stroke="Gray"
                                                 StrokeThickness="3"
-                                                Stroke="Gray"></Path>
+                                                VerticalOptions="Center"
+                                                WidthRequest="13" />
                                         </StackLayout>
                                     </Grid>
                                 </ui:MaterialCard>

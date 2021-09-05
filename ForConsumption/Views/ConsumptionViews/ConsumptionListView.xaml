@@ -7,16 +7,15 @@
     xmlns:system="clr-namespace:System;assembly=netstandard"
     Title="{Binding Title}"
     Shell.NavBarHasShadow="False">
-    <ContentPage.Resources></ContentPage.Resources>
+    <ContentPage.Resources />
     <ContentPage.Content>
-        <StackLayout
-            Margin="15,0">
+        <StackLayout Margin="15,0">
             <Grid
                 BackgroundColor="Transparent"
                 HeightRequest="200"
                 MinimumHeightRequest="200">
                 <BoxView
-                    BackgroundColor="#CEEFE4"
+                    BackgroundColor="#e5fbff"
                     CornerRadius="3"
                     HeightRequest="160"
                     HorizontalOptions="Fill"
@@ -26,17 +25,14 @@
                     HorizontalOptions="StartAndExpand"
                     Orientation="Vertical"
                     VerticalOptions="Center">
-                    <Label
-                        Text="今日支出" />
-                    <StackLayout
-                        Orientation="Horizontal">
+                    <Label Text="今日支出" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label FontSize="25" Text="{Binding TodayMoney, StringFormat='{}{0:F2}'}" />
                         <Label
-                            FontSize="25"
-                            Text="{Binding TodayMoney, StringFormat='{}{0:F2}'}" />
-                        <Label
-                            FontSize="15" Margin="0,0,0,3"
-                            VerticalOptions="End"
-                            Text="元" />
+                            Margin="0,0,0,3"
+                            FontSize="15"
+                            Text="元"
+                            VerticalOptions="End" />
                     </StackLayout>
                 </StackLayout>
                 <StackLayout
@@ -44,24 +40,19 @@
                     HorizontalOptions="EndAndExpand"
                     Orientation="Vertical"
                     VerticalOptions="Center">
-                    <Label
-                        Text="消费数量" />
-                    <StackLayout
-                        HorizontalOptions="End"
-                        Orientation="Horizontal">
+                    <Label Text="消费数量" />
+                    <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                        <Label FontSize="25" Text="{Binding ItemsSource.Count}" />
                         <Label
-                            FontSize="25"
-                            Text="{Binding ItemsSource.Count}" />
-                        <Label
-                            FontSize="15"
                             Margin="0,0,0,3"
-                            VerticalOptions="End"
-                            Text="次" />
+                            FontSize="15"
+                            Text="次"
+                            VerticalOptions="End" />
                     </StackLayout>
                 </StackLayout>
                 <material:MaterialCard
                     Padding="00"
-                    BackgroundColor="#d9d9f3"
+                    BackgroundColor="#fee2b5"
                     ClickCommand="{Binding AddConsumptionCommand}"
                     CornerRadius="40"
                     HeightRequest="80"
@@ -75,11 +66,11 @@
                         Source="write" />
                 </material:MaterialCard>
                 <Label
+                    Margin="0,30,0,0"
                     FontSize="16"
                     HorizontalOptions="Center"
-                    VerticalOptions="Start"
-                    Margin="0,30,0,0"
-                    Text="{Binding Today,StringFormat='{}{0:yyyy-MM-dd}'}"></Label>
+                    Text="{Binding Today, StringFormat='{}{0:yyyy-MM-dd}'}"
+                    VerticalOptions="Start" />
             </Grid>
             <Grid
                 Margin="0,-20,0,0"
@@ -100,9 +91,7 @@
                     Text="今日消费"
                     VerticalOptions="Center" />
             </Grid>
-            <RefreshView
-                IsRefreshing="{Binding IsRefreshing,Mode=OneWay}"
-                Command="{Binding RefreshCommand}">
+            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}">
                 <CollectionView
                     x:Name="InfoContainer"
                     ItemSizingStrategy="MeasureAllItems"
@@ -111,7 +100,7 @@
                         <DataTemplate>
                             <material:MaterialCard
                                 Padding="00"
-                                BackgroundColor="#60d9d9f3"
+                                BackgroundColor="#fef4fc"
                                 BorderColor="Transparent"
                                 ClickCommand="{Binding BindingContext.OpenDetailsCommand, Source={x:Reference InfoContainer}}"
                                 ClickCommandParameter="{Binding}"
@@ -120,51 +109,42 @@
                                 HorizontalOptions="Fill"
                                 IsClickable="True"
                                 VerticalOptions="EndAndExpand">
-                                <Grid
-                                    Margin="10,5">
+                                <Grid Margin="10,5">
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
-                                        <ColumnDefinition
-                                            Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <StackLayout
-                                        Orientation="Horizontal">
+                                    <StackLayout Orientation="Horizontal">
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="16"
-                                            VerticalOptions="Center"
-                                            Text="{Binding Category}" />
+                                            Text="{Binding Category}"
+                                            VerticalOptions="Center" />
                                         <Label
-                                            VerticalOptions="Center"
                                             FontSize="13"
-                                            Text="{Binding Description}" />
+                                            Text="{Binding Description}"
+                                            VerticalOptions="Center" />
                                     </StackLayout>
                                     <StackLayout
                                         Grid.Row="1"
                                         Grid.Column="0"
-                                        VerticalOptions="Center"
-                                        Orientation="Horizontal">
-                                        <Label
-                                            FontSize="13"
-                                            Text="{Binding CreateTime, StringFormat='{}{0:HH:mm}'}" />
+                                        Orientation="Horizontal"
+                                        VerticalOptions="Center">
+                                        <Label FontSize="13" Text="{Binding CreateTime, StringFormat='{}{0:HH:mm}'}" />
                                         <Label
                                             Margin="5,00,5,0"
                                             FontAttributes="Bold"
                                             Text="·" />
-                                        <Label
-                                            FontSize="13"
-                                            Text="{Binding Payment}" />
+                                        <Label FontSize="13" Text="{Binding Payment}" />
                                         <Label
                                             Margin="5,00,5,0"
                                             FontAttributes="Bold"
                                             Text="·" />
-                                        <Label
-                                            FontSize="13"
-                                            Text="{Binding Owner}" />
+                                        <Label FontSize="13" Text="{Binding Owner}" />
                                     </StackLayout>
                                     <Label
                                         Grid.Row="0"

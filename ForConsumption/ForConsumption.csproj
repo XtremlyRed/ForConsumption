@@ -5,6 +5,7 @@
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <LangVersion>9.0</LangVersion>
     <Platforms>AnyCPU;x64</Platforms>
+		<OutputPath>../bin/$(Platform)/$(Configuration)</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

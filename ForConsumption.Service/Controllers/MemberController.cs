@@ -65,9 +65,9 @@ namespace ForConsumption.Service.Controllers
                 new Claim(ClaimTypes.Hash, member.ID.ToString()),
             };
 
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(TokenParameter.Secret));
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(TokenParameter.Instance.Secret));
             SigningCredentials credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            JwtSecurityToken jwtToken = new JwtSecurityToken(TokenParameter.Issuer, TokenParameter.Audience, claims, expires: DateTime.UtcNow.AddMinutes(TokenParameter.AccessTokenTimeout), signingCredentials: credentials);
+            JwtSecurityToken jwtToken = new JwtSecurityToken(TokenParameter.Instance.Issuer, TokenParameter.Instance.Audience, claims, expires: DateTime.UtcNow.AddMinutes(TokenParameter.Instance.AccessTimeout), signingCredentials: credentials);
             string token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
 
 

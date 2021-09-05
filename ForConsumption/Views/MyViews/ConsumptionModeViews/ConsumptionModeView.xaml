@@ -7,14 +7,12 @@
     Title="{Binding Title}"
     NavigationPage.HasBackButton="True"
     Shell.ForegroundColor="Black"
-    Shell.NavBarHasShadow="False"  
+    Shell.NavBarHasShadow="False"
     Shell.NavBarIsVisible="True"
     Shell.TabBarIsVisible="False"
     Shell.TitleColor="Black">
     <ContentPage.ToolbarItems>
-        <ToolbarItem
-            Text="添  加  "
-            Command="{Binding AddNewConsumptionModeCommand}"></ToolbarItem>
+        <ToolbarItem Command="{Binding AddNewConsumptionModeCommand}" Text="添  加  " />
     </ContentPage.ToolbarItems>
 
 
@@ -39,25 +37,23 @@
                             HeightRequest="60"
                             HorizontalOptions="Fill"
                             IsClickable="True">
-                            <Grid
-                                Margin="20,0"
-                                ColumnDefinitions="*,*,1*">
+                            <Grid Margin="20,0" ColumnDefinitions="*,*,1*">
                                 <Label
-                                    FontSize="Body"
                                     Grid.Column="0"
                                     FontAttributes="Bold"
+                                    FontSize="Body"
                                     HorizontalOptions="StartAndExpand"
                                     Text="{Binding Mode}"
                                     VerticalOptions="CenterAndExpand" />
                                 <Label
-                                    FontSize="Body"
                                     Grid.Column="1"
+                                    FontSize="Body"
                                     HorizontalOptions="StartAndExpand"
-                                    Text="{Binding Counter,StringFormat='{}使用 {0} 次'}"
+                                    Text="{Binding Counter, StringFormat='{}使用 {0} 次'}"
                                     VerticalOptions="CenterAndExpand" />
                                 <Label
-                                    FontSize="Body"
                                     Grid.Column="2"
+                                    FontSize="Body"
                                     HorizontalOptions="EndAndExpand"
                                     Text="{Binding CreateTime, StringFormat='{}{0:yyyy-MM-dd}'}"
                                     VerticalOptions="CenterAndExpand" />

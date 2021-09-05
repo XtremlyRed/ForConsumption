@@ -14,10 +14,8 @@ namespace ForConsumption.Droid.Controls
     {
         private readonly GradientDrawable gd = new GradientDrawable();
         public TextEntryRenderer() : base(Android.App.Application.Context)
-        {
-
-        }
-
+        { 
+        } 
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
@@ -28,20 +26,12 @@ namespace ForConsumption.Droid.Controls
             }
             if (!(e.NewElement is TextEntry entry))
             {
-                return;
-
+                return; 
             }
             gd.SetCornerRadius((float)entry.CornerRadius);
-            gd.SetColor(entry.TextAreaColor.ToAndroid());
-
-            gd.SetStroke((int)entry.StrokeThickness, entry.Stroke.ToAndroid());
-
-            Control.Background = gd;
-
-        }
-
-
+            gd.SetColor(entry.TextAreaColor.ToAndroid()); 
+            gd.SetStroke((int)entry.StrokeThickness, entry.Stroke.ToAndroid()); 
+            Control.Background = gd; 
+        } 
     }
-
-
 }

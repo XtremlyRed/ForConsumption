@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:converters="clr-namespace:ForConsumption.Converters"
-    x:Class="ForConsumption.App">
+<Application
+    x:Class="ForConsumption.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:ForConsumption.Converters">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
@@ -10,7 +11,7 @@
         <ResourceDictionary>
             <Color x:Key="Primary">#FFFFFF</Color>
             <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="White" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -29,11 +30,8 @@
                 </Setter>
             </Style>
         </ResourceDictionary>
-        <converters:GroupTitleMarginConverter
-            x:Key="GroupTitleMarginConverter"></converters:GroupTitleMarginConverter>
-        <converters:StatisticsItemConverter
-            x:Key="StatisticsItemConverter"></converters:StatisticsItemConverter>
-        <converters:StringNullOrEmptyConverter
-            x:Key="StringNullOrEmptyConverter"></converters:StringNullOrEmptyConverter>
+        <converters:GroupTitleMarginConverter x:Key="GroupTitleMarginConverter" />
+        <converters:StatisticsItemConverter x:Key="StatisticsItemConverter" />
+        <converters:StringNullOrEmptyConverter x:Key="StringNullOrEmptyConverter" />
     </Application.Resources>
 </Application>

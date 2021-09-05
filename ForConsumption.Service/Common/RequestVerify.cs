@@ -45,9 +45,7 @@ namespace ForConsumption.Service.Common
                 message = "随机序列验证失败";
                 return false;
             }
-
-            context.ApplicationKey = CommonKeys.ApplicationKey;
-
+             
             string signToken = context.Sign();
 
             if (context.SignToken != signToken)

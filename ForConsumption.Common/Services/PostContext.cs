@@ -12,9 +12,11 @@ namespace ForConsumption.Common.Services
     [JsonObject(MemberSerialization.OptIn)]
     public class PostContext
     {
+        public static string CurrentToken { get; set; }
+
         [JsonIgnore]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public string ApplicationKey { get; set; }
+        public const string ApplicationKey = "#￥%…&**64%…￥%55#5#&((564%^!@@65--+/-*(&&*(8{}）&545";
 
         [JsonProperty("t")]
         public long TimeStamp { get; set; }
@@ -30,17 +32,13 @@ namespace ForConsumption.Common.Services
 
         [JsonProperty("i")]
         public int OwnerId { get; set; }
-
-        [JsonIgnore]
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string FixSignBuffer => $"Time={TimeStamp}&Context={Context}&Random={Random}";
-
+         
         public string Sign()
         {
             using (MD5 mi = MD5.Create())
             {
 
-                string stringBuffer = $"Key={ApplicationKey}&{FixSignBuffer}";
+                string stringBuffer = $"Key={ApplicationKey}&Time={TimeStamp}&Context={Context}&Random={Random}";
 
                 byte[] buffer = Encoding.UTF8.GetBytes(stringBuffer);
 
@@ -59,7 +57,7 @@ namespace ForConsumption.Common.Services
         {
             return new PostContext()
             {
-                ApplicationKey = CommonKeys.ApplicationKey,
+                
                 Random = Guid.NewGuid().ToString(),
                 TimeStamp = DateTime.Now.Ticks,
                 Context = content is null ? "" : JsonMapper.Serialize(content),

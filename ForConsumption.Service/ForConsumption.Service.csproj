@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Platforms>AnyCPU;x64;ARM64</Platforms>
+	<OutputPath>../bin/$(Platform)/$(Configuration)</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,5 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ForConsumption.Common\ForConsumption.Common.csproj" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

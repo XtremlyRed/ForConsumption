@@ -3,10 +3,11 @@
     x:Class="ForConsumption.Views.AddConsumptionView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ForConsumption.Controls;assembly=ForConsumption"
     xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
     xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-    xmlns:views="clr-namespace:ForConsumption.Views"
     xmlns:viewModel="clr-namespace:ForConsumption.ViewModels;assembly=ForConsumption.ViewModels"
+    xmlns:views="clr-namespace:ForConsumption.Views"
     Title="{Binding Title}"
     NavigationPage.HasBackButton="True"
     Shell.ForegroundColor="Black"
@@ -14,27 +15,37 @@
     Shell.NavBarIsVisible="True"
     Shell.TabBarIsVisible="False"
     Shell.TitleColor="Black">
+
+    <!--<Shell.TitleView>
+
+        <Label
+            BackgroundColor="Red"
+            Text="{Binding Title}"
+            VerticalOptions="Center" />
+    </Shell.TitleView>-->
+
+
     <ContentPage.ToolbarItems>
-        <ToolbarItem
-            Command="{Binding ComplateCommand}"
-            Text="完  成  "></ToolbarItem>
+        <ToolbarItem Command="{Binding ComplateCommand}" Text="完  成  " />
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <Grid>
             <StackLayout>
-               
-                <Grid Margin="15,0" HeightRequest="60" MinimumHeightRequest="60">
-                    <BoxView
-                        BackgroundColor="#FFd9d9f3" CornerRadius="3" />
+
+                <Grid
+                    Margin="15,0"
+                    HeightRequest="60"
+                    MinimumHeightRequest="60">
+                    <BoxView BackgroundColor="#60d9d9f3" CornerRadius="3" />
                     <Label
                         Margin="20,0"
                         FontSize="18"
                         Text="金额"
                         VerticalOptions="Center" />
-                    <Entry
+                    <controls:TextEntry
                         x:Name="MomeyBox"
-                        Margin="0,-25,20,-25"
+                        Margin="0,0,20,0"
                         BackgroundColor="Transparent"
                         CharacterSpacing="2"
                         ClearButtonVisibility="WhileEditing"
@@ -44,70 +55,79 @@
                         Keyboard="Numeric"
                         MinimumHeightRequest="60"
                         Placeholder="请输入金额"
-                        Text="{Binding MoneyString}" />
+                        Text="{Binding MoneyString}"
+                        TextAreaColor="Transparent" />
                 </Grid>
                 <Grid
                     Margin="15,0"
-                    HeightRequest="60" MinimumHeightRequest="60">
-                    <BoxView
-                        BackgroundColor="#FFd9d9f3" CornerRadius="3" />
+                    HeightRequest="60"
+                    IsClippedToBounds="True"
+                    MinimumHeightRequest="60">
+                    <BoxView BackgroundColor="#60d9d9f3" CornerRadius="3" />
                     <Label
                         Margin="20,0"
                         FontSize="18"
                         Text="消费分类"
                         VerticalOptions="Center" />
                     <Picker
+                        Title="请选择消费类型"
                         Margin="0,-25,20,-25"
-                        AutomationId="1"
                         BackgroundColor="Transparent"
                         CharacterSpacing="2"
                         HeightRequest="60"
-                        ItemDisplayBinding="{Binding Mode}"
                         HorizontalTextAlignment="End"
+                        ItemDisplayBinding="{Binding Mode}"
                         ItemsSource="{Static viewModel:ConsumptionModeViewModel.AllConsumptionModes}"
                         MinimumHeightRequest="60"
                         SelectedItem="{Binding CategoryMode}" />
                 </Grid>
                 <Grid
                     Margin="15,0"
-                    HeightRequest="60" MinimumHeightRequest="60">
-                    <BoxView
-                        BackgroundColor="#FFd9d9f3" CornerRadius="3" />
+                    HeightRequest="60"
+                    IsClippedToBounds="True"
+                    MinimumHeightRequest="60">
+                    <BoxView BackgroundColor="#60d9d9f3" CornerRadius="3" />
                     <Label
                         Margin="20,0"
                         FontSize="18"
                         Text="支付方式"
                         VerticalOptions="Center" />
                     <Picker
+                        Title="请选择支付方式"
                         Margin="0,-25,20,-25"
                         AutomationId="1"
                         BackgroundColor="Transparent"
                         CharacterSpacing="2"
                         HeightRequest="60"
-                        ItemDisplayBinding="{Binding Mode}"
                         HorizontalTextAlignment="End"
+                        ItemDisplayBinding="{Binding Mode}"
                         ItemsSource="{Static viewModel:PaymentModeViewModel.AllPaymentModes}"
                         MinimumHeightRequest="60"
                         SelectedItem="{Binding PaymentMode}" />
                 </Grid>
                 <Grid
                     Margin="15,0"
-                    HeightRequest="60" MinimumHeightRequest="60">
-                    <BoxView
-                        BackgroundColor="#FFd9d9f3" CornerRadius="3" />
+                    HeightRequest="60"
+                    MinimumHeightRequest="60">
+                    <BoxView BackgroundColor="#60d9d9f3" CornerRadius="3" />
                     <Label
                         Margin="20,0"
                         FontSize="18"
                         Text="日期"
                         VerticalOptions="Center" />
-                    <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                    <StackLayout
+                        HorizontalOptions="End"
+                        IsClippedToBounds="True"
+                        Orientation="Horizontal">
                         <DatePicker
                             Margin="0,-25,20,-25"
                             AutomationId="1"
                             BackgroundColor="Transparent"
                             CharacterSpacing="2"
                             Date="{Binding Current.CreateTime}"
+                            Format="yyyy-MM-dd"
                             HeightRequest="60"
+                            HorizontalOptions="End"
                             MinimumHeightRequest="60" />
                         <!--<TimePicker
                             Margin="0,-25,20,-25"
@@ -117,21 +137,23 @@
                             AutomationId="1"
                             CharacterSpacing="2"
                             BackgroundColor="Transparent"></TimePicker>-->
+
                     </StackLayout>
+
                 </Grid>
                 <Grid
                     Margin="15,0"
-                    HeightRequest="60" MinimumHeightRequest="60">
-                    <BoxView
-                        BackgroundColor="#FFd9d9f3" CornerRadius="3" />
+                    HeightRequest="60"
+                    MinimumHeightRequest="60">
+                    <BoxView BackgroundColor="#60d9d9f3" CornerRadius="3" />
                     <Label
                         Margin="20,0"
                         FontSize="18"
                         Text="地点"
                         VerticalOptions="Center" />
-                    <Entry
+                    <controls:TextEntry
                         x:Name="AddressBox"
-                        Margin="0,-25,20,-25"
+                        Margin="0,0,20,0"
                         BackgroundColor="Transparent"
                         CharacterSpacing="2"
                         ClearButtonVisibility="WhileEditing"
@@ -141,21 +163,22 @@
                         Keyboard="Plain"
                         MinimumHeightRequest="60"
                         Placeholder="请输入地址信息"
-                        Text="{Binding Current.Address}" />
+                        Text="{Binding Current.Address}"
+                        TextAreaColor="Transparent" />
                 </Grid>
                 <Grid
                     Margin="15,0"
-                    HeightRequest="60" MinimumHeightRequest="60">
-                    <BoxView
-                        BackgroundColor="#FFd9d9f3" CornerRadius="3" />
+                    HeightRequest="60"
+                    MinimumHeightRequest="60">
+                    <BoxView BackgroundColor="#60d9d9f3" CornerRadius="3" />
                     <Label
                         Margin="20,0"
                         FontSize="18"
                         Text="备注"
                         VerticalOptions="Center" />
-                    <Entry
+                    <controls:TextEntry
                         x:Name="DescriptionBox"
-                        Margin="0,-25,20,-25"
+                        Margin="0,0,20,0"
                         BackgroundColor="Transparent"
                         CharacterSpacing="2"
                         ClearButtonVisibility="WhileEditing"
@@ -165,19 +188,11 @@
                         Keyboard="Plain"
                         MinimumHeightRequest="60"
                         Placeholder="请输入备注信息"
-                        Text="{Binding Current.Description}" />
+                        Text="{Binding Current.Description}"
+                        TextAreaColor="Transparent" />
                 </Grid>
-                <BoxView BackgroundColor="White" MinimumHeightRequest="30" />
             </StackLayout>
-            <!--<Button
-                Margin="15,0,15,10"
-                Padding="0"
-                BackgroundColor="#9dd3a8"
-                Command="{Binding ComplateCommand}"
-                FontSize="17"
-                HeightRequest="60"
-                Text="完  成"
-                VerticalOptions="End" />-->
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 using Plugins.ToolKits;
@@ -32,7 +33,6 @@ namespace ForConsumption.Service
             Configuration = configuration;
         }
 
-        public static byte[] SecurityKeyBuffer = Encoding.UTF8.GetBytes(TokenParameter.Secret);
 
         public IConfiguration Configuration { get; }
 
@@ -57,8 +57,6 @@ namespace ForConsumption.Service
 
 
 
-
-
             services.Configure<FormOptions>(x =>
             {
                 x.ValueLengthLimit = int.MaxValue;
@@ -71,8 +69,12 @@ namespace ForConsumption.Service
                 x.BufferBodyLengthLimit = int.MaxValue;
             });
 
-            // 加密解密Token的密钥 
 
+            ServiceProvider sp = new ServiceCollection().AddOptions().Configure<TokenParameter>(Configuration.GetSection(nameof(TokenParameter))).BuildServiceProvider();
+            TokenParameter tokenParameter = TokenParameter.Instance=  sp.GetService<IOptions<TokenParameter>>()?.Value;
+
+
+            // 加密解密Token的密钥  
             services.AddAuthentication("Bearer")
             .AddJwtBearer(options =>
             {
@@ -81,19 +83,19 @@ namespace ForConsumption.Service
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(SecurityKeyBuffer),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenParameter.Secret)),
                     // 是否验证发布者
                     ValidateIssuer = true,
                     // 发布者名称
-                    ValidIssuer = TokenParameter.Issuer,
+                    ValidIssuer = tokenParameter.Issuer,
                     // 是否验证订阅者
                     // 订阅者名称
                     ValidateAudience = true,
-                    ValidAudience = TokenParameter.Audience,
+                    ValidAudience = tokenParameter.Audience,
                     // 是否验证令牌有效期
                     ValidateLifetime = true,
                     // 每次颁发令牌，令牌有效时间
-                    ClockSkew = TimeSpan.FromMinutes(TokenParameter.AccessTokenTimeout)
+                    ClockSkew = TimeSpan.FromMinutes(tokenParameter.AccessTimeout)
                 };
             });
 

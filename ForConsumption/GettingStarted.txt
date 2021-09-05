@@ -8,6 +8,9 @@ This is the most productive way to preview and iteratively create your UI.
 
 Try it out:
 
+
+
+
 1. Run the app by clicking the Start Debugging (play) button in the above toolbar. 
 2. Open <MainProject>\Views\AboutPage.xaml.
    Don't stop the app - keep it running while making changes.

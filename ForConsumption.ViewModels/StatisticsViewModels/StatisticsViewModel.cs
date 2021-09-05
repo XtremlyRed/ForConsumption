@@ -15,7 +15,7 @@ namespace ForConsumption.ViewModels.StatisticsViewModels
 {
     public class StatisticsViewModel : BaseViewModel<StatisticsViewModel>
     {
-        public override string Title => "统计";
+        public override string Title => "分析";
 
         public StatisticsViewModel()
         {

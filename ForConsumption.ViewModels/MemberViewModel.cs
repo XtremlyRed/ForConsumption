@@ -5,6 +5,7 @@ using System.Windows.Input;
 
 using ForConsumption.Common;
 using ForConsumption.Common.Common;
+using ForConsumption.Common.Services;
 using ForConsumption.ViewModels.Models;
 
 using Plugins.ToolKits;
@@ -84,12 +85,10 @@ namespace ForConsumption.ViewModels
                 return false;
             }
 
-            TokenParameter.CurrentToken = infos[0];
+            PostContext.CurrentToken = infos[0];
 
             Member = JsonMapper.Deserialize<Member>(infos[1]);
-
-
-
+            
             Task? task1 = PaymentModeViewModel.Instance.InitializeAsyc();
             Task? task2 = ConsumptionModeViewModel.Instance.InitializeAsyc();
             Task? task3 = InitializeAsyc();

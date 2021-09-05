@@ -46,7 +46,7 @@ namespace ForConsumption.ViewModels.StatisticsViewModels
 
             await System.Threading.Tasks.Task.CompletedTask;
 
-            EditConsumptionViewModel.UpdateInstance.Current = locker.Parameter.Copy();
+            EditConsumptionViewModel.DisplayInstance.Current = locker.Parameter.Copy();
 
             Messenger.Default.Send(MessageKeys.NavigatToConsumptionDetaisViewToken, true);
 
