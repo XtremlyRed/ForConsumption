@@ -81,6 +81,16 @@ namespace ForConsumption.ViewModels.Models
                  s.Value = e.Length;
              });
         }
+
+        public async Task<JsonResult> DeleteConsumptionItemAsync(ConsumptionItem current)
+        {
+            string? jsonString = JsonMapper.Serialize(current);
+            JsonResult result = await CreateRequest(current.ID)
+                .UseUrl("Consumption/Delete")
+                .ExecuteAsync<JsonResult>();
+
+            return result;
+        }
     }
 
 

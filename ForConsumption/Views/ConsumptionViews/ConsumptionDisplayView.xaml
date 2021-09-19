@@ -159,15 +159,16 @@
                     BackgroundColor="White"
                     MinimumHeightRequest="30" />
             </StackLayout>
-            <!--<Button
+            <Button
                 Margin="15,0,15,10"
                 Padding="0"
-                BackgroundColor="#9dd3a8"
-                Command="{Binding ComplateCommand}"
+                IsVisible="{Binding DeleteVisible}"
+                BackgroundColor="red"
+                Command="{Binding DeleteCommand}"
                 FontSize="17"
-                HeightRequest="60"
-                Text="完  成"
-                VerticalOptions="End" />-->
+                HeightRequest="40"
+                Text="删   除"
+                VerticalOptions="End" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

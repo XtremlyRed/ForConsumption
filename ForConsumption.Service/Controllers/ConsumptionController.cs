@@ -174,5 +174,39 @@ namespace ForConsumption.Service.Controllers
             }
 
         }
+
+
+
+        [HttpPost]
+        [Route("[action]")]
+        public JsonAjax Delete([FromBody] PostContext context)
+        {
+            try
+            {
+                if (context.Verify(out string message) == false)
+                {
+                    return JsonAjax.Error(message);
+                }
+
+                int id = JsonMapper.Deserialize<int>(context.Context);
+
+                if (id <= 0)
+                {
+                    return JsonAjax.Error("当前数据索引异常,删除失败");
+                }
+                 
+                DataContext.ConsumptionItems.Remove(new ConsumptionItem { ID=id});
+
+                var effectRow=DataContext.SaveChanges();
+
+                return JsonAjax.Success<int>(effectRow,"删除成功");
+
+            }
+            catch (Exception e)
+            {
+                return JsonAjax.Error(e);
+            }
+
+        }
     }
 }

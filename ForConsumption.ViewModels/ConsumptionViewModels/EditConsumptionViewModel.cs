@@ -18,7 +18,7 @@ namespace ForConsumption.ViewModels
         {
         }
 
-        public static EditConsumptionViewModel DisplayInstance { get; } = new EditConsumptionViewModel() { Title = "账单详情" };
+        public static EditConsumptionViewModel DisplayInstance { get; } = new EditConsumptionViewModel() { Title = "账单详情", DeleteVisible=true };
 
         public static EditConsumptionViewModel UpdateInstance { get; } = new EditConsumptionViewModel() { Title = "修改账单" };
         public static EditConsumptionViewModel AddInstance { get; } = new EditConsumptionViewModel() { Title = "添加账单" };
@@ -117,5 +117,42 @@ namespace ForConsumption.ViewModels
 
         }, e => MessageShower.ShowAsync(e.Message));
 
+
+
+        public  bool DeleteVisible
+        {
+            get => GetValue(false);
+            set => SetValue(value);
+        }
+
+        public ICommand DeleteCommand => CommandBinder.TryBindExclusiveCommand(async locker=> 
+        {
+            using (locker.BeginLock()) ;
+
+            if (DeleteVisible == false)
+            {
+                return;
+            }
+
+            var confirmResult =await MessageShower.ConfirmAsync("确认删除吗???");
+            if (confirmResult == false)
+            {
+                return ;
+            }
+
+            Common.Common.JsonResult? jsonResult = await ForConsumptionModel.Instance.DeleteConsumptionItemAsync(Current);
+
+            if (!jsonResult.Result)
+            {
+                await MessageShower.ShowAsync(jsonResult.Message);
+                return;
+            }
+
+
+            ConsumptionListViewModel.Instance.InitializeAsync().NoAwaiter();
+
+            Messenger.Default.Send(MessageKeys.GoBackToken);
+
+        }, e => MessageShower.ShowAsync(e.Message));
     }
 }

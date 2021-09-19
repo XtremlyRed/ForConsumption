@@ -23,10 +23,7 @@ namespace ForConsumption.Service
 {
     public class Startup
     {
-        private static readonly IFreeSql fsql = new FreeSqlBuilder()
-            .UseConnectionString(DataType.Sqlite, "Data Source=source.SQLite")
-            .UseAutoSyncStructure(true) //自动同步实体结构到数据库
-            .Build();
+      
 
         public Startup(IConfiguration configuration)
         {
@@ -41,7 +38,7 @@ namespace ForConsumption.Service
         {
 
             services.AddControllers();
-            services.AddSingleton(fsql);
+            services.AddSingleton(Program.Fsql);
 
             services.AddMvc().AddNewtonsoftJson(x =>
             {
@@ -52,7 +49,7 @@ namespace ForConsumption.Service
                 x.SerializerSettings.ReferenceLoopHandling = JsonMapper.JsonSerializerSettings.ReferenceLoopHandling;
             });
 
-            Injecter.RegisterInstance(fsql).As<IFreeSql>();
+            Injecter.RegisterInstance(Program.Fsql).As<IFreeSql>();
 
 
 

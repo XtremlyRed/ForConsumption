@@ -12,7 +12,7 @@ namespace ForConsumption
     {
 
  
-        public const string IpAddress = "192.168.3.4";
+        public const string IpAddress ="192.168.3.4";
  
 
 

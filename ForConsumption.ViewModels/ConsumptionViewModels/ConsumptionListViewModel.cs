@@ -53,19 +53,18 @@ namespace ForConsumption.ViewModels
                 JsonResult<ConsumptionItem[], int>? jsonResult = await ForConsumptionModel.Instance.LoadTodayInfosAsync();
 
                 ItemsSource.Clear();
-
+                TodayMoney = 0;
                 if (jsonResult.Data is null || jsonResult.Data.Length == 0)
                 {
                     return;
                 }
 
                 ICollection<ConsumptionItem>? array = jsonResult.Data.DataFill();
-
-                Messenger.Default.Send(MessageKeys.RunOnUIThread, new Action(() =>
+                if (array != null && array.Count > 0)
                 {
                     ItemsSource.AddItems(array);
                     TodayMoney = ItemsSource.Sum(i => i.Money);
-                }));
+                } 
             });
         }
 
